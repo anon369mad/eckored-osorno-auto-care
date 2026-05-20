@@ -63,6 +63,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Servicios mecánicos preventivos y correctivos a domicilio en Osorno. Aceite, frenos, tren delantero, scanner y más." },
       { property: "og:site_name", content: "ECKORED" },
       { property: "og:type", content: "website" },
+      { property: "og:title", content: "ECKORED — Mecánica a Domicilio en Osorno" },
+      { name: "twitter:title", content: "ECKORED — Mecánica a Domicilio en Osorno" },
+      { property: "og:description", content: "Servicios mecánicos preventivos y correctivos a domicilio en Osorno. Aceite, frenos, tren delantero, scanner y más." },
+      { name: "twitter:description", content: "Servicios mecánicos preventivos y correctivos a domicilio en Osorno. Aceite, frenos, tren delantero, scanner y más." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/dfe14f01-640c-4d24-8ad2-e0324a193776/id-preview-c63a31b1--5df730d5-15a3-4ed8-97f4-3f7c01f4d780.lovable.app-1779298296119.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/dfe14f01-640c-4d24-8ad2-e0324a193776/id-preview-c63a31b1--5df730d5-15a3-4ed8-97f4-3f7c01f4d780.lovable.app-1779298296119.png" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
