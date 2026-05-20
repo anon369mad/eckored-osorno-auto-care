@@ -16,9 +16,10 @@ export const Route = createFileRoute("/contacto")({
   }),
 });
 
-const ADDRESS = "Las Quemas KM 5, Frente a pasarela, Osorno";
+const ADDRESS = "Las Quemas KM 5, Frente a pasarela, Osorno, Chile";
 const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
-const MAPS_EMBED = `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}&output=embed`;
+const MAPS_KEY = import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_BROWSER_KEY;
+const MAPS_EMBED = `https://www.google.com/maps/embed/v1/place?key=${MAPS_KEY}&q=${encodeURIComponent(ADDRESS)}&zoom=15`;
 
 function ContactoPage() {
   return (
@@ -96,17 +97,17 @@ function ContactoPage() {
         </div>
 
         {/* Map */}
-        <div className="relative border border-border overflow-hidden min-h-[480px] lg:min-h-0">
+        <div className="relative border border-border overflow-hidden min-h-[480px] lg:min-h-[600px]">
           <iframe
             title="Mapa ECKORED - Las Quemas KM 5, Osorno"
             src={MAPS_EMBED}
             className="absolute inset-0 h-full w-full"
-            style={{ border: 0, filter: "grayscale(0.3) contrast(1.05)" }}
+            style={{ border: 0 }}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             allowFullScreen
           />
-          <div className="absolute top-4 left-4 bg-background/90 backdrop-blur border border-primary/40 px-4 py-2 text-xs font-bold uppercase tracking-wider">
+          <div className="absolute top-4 left-4 bg-background/90 backdrop-blur border border-primary/40 px-4 py-2 text-xs font-bold uppercase tracking-wider pointer-events-none">
             <span className="text-primary">●</span> Las Quemas KM 5
           </div>
         </div>
