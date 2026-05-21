@@ -8,9 +8,10 @@ export const Route = createFileRoute("/servicios")({
   head: () => ({
     meta: [
       { title: "Servicios — ECKORED Mecánica a Domicilio" },
-      { name: "description", content: "Aceite, frenos, tren delantero, scanner, lavado de cortesía y empaquetaduras. Servicios preventivos y correctivos en Osorno." },
+      { name: "description", content: "Servicios de mecánica automotriz en Osorno a precio conveniente: aceite, frenos, scanner, tren delantero, empaquetaduras y más." },
+      { name: "keywords", content: "servicios mecánicos osorno, mecánica automotriz barata osorno, cambio de aceite osorno, scanner automotriz osorno" },
       { property: "og:title", content: "Servicios — ECKORED" },
-      { property: "og:description", content: "Servicios mecánicos preventivos y correctivos a domicilio en Osorno." },
+      { property: "og:description", content: "Servicios mecánicos preventivos y correctivos en Osorno, a domicilio o en taller, con precios accesibles." },
       { property: "og:url", content: "/servicios" },
     ],
     links: [{ rel: "canonical", href: "/servicios" }],
