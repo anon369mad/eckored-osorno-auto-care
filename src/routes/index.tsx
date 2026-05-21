@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { ArrowRight, CheckCircle2, MapPin, MessageCircle, Shield, Wrench, Clock, ExternalLink } from "lucide-react";
 import { SiteLayout, WSP_URL } from "@/components/SiteLayout";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { services } from "@/lib/services";
 import hero from "@/assets/hero-mechanic.jpg";
 import brakes from "@/assets/gallery-brakes.jpg";
@@ -28,6 +29,15 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const [galleryApi, setGalleryApi] = useState<CarouselApi>();
+
+  useEffect(() => {
+    if (!galleryApi) return;
+
+    const id = window.setInterval(() => galleryApi.scrollNext(), 3500);
+    return () => window.clearInterval(id);
+  }, [galleryApi]);
+
   return (
     <SiteLayout>
       {/* HERO */}
@@ -130,22 +140,18 @@ function Index() {
             <h2 className="text-display text-4xl md:text-5xl font-black mt-2">Galería</h2>
           </div>
         </div>
-        <Carousel opts={{ loop: true }} className="w-full px-10 sm:px-14">
+        <Carousel opts={{ loop: true }} setApi={setGalleryApi} className="w-full px-10 sm:px-14">
           <CarouselContent>
             {[
-              { src: brakes, alt: "Pastillas y frenos", label: "Frenos" },
-              { src: oil, alt: "Cambio de aceite", label: "Aceite" },
-              { src: scanner, alt: "Scanner automotriz", label: "Scanner" },
-              { src: suspension, alt: "Tren delantero", label: "Suspensión" },
+              { src: brakes, alt: "Pastillas y frenos" },
+              { src: oil, alt: "Cambio de aceite" },
+              { src: scanner, alt: "Scanner automotriz" },
+              { src: suspension, alt: "Tren delantero" },
             ].map((p, i) => (
               <CarouselItem key={i}>
-                <figure className="group relative overflow-hidden border border-border">
+                <div className="group relative overflow-hidden border border-border">
                   <img src={p.src} alt={p.alt} loading="lazy" className="h-[260px] w-full object-cover transition-transform duration-700 group-hover:scale-105 sm:h-[360px] md:h-[420px]" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent opacity-80" />
-                  <figcaption className="absolute bottom-3 left-3">
-                    <span className="text-display text-lg font-bold text-white drop-shadow-md">{p.label}</span>
-                  </figcaption>
-                </figure>
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>
