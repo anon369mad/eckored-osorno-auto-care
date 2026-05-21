@@ -8,6 +8,10 @@ import oil from "@/assets/gallery-oil.jpg";
 import scanner from "@/assets/gallery-scanner.jpg";
 import suspension from "@/assets/gallery-suspension.jpg";
 
+const ADDRESS = "Las Quemas KM 5, Frente a pasarela, Osorno, Chile";
+const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
+const MAPS_EMBED_FALLBACK = `https://maps.google.com/maps?q=${encodeURIComponent(ADDRESS)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
@@ -151,7 +155,7 @@ function Index() {
               <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Contacto</span>
               <h2 className="text-display text-4xl md:text-5xl font-black mt-2">Cotiza tu servicio hoy</h2>
               <p className="mt-4 text-foreground/80">
-                Atención a domicilio en Osorno y alrededores. Cuéntanos el problema de tu vehículo y te enviamos cotización por WhatsApp.
+                Atención a domicilio en Osorno y alrededores, y también en casa/taller en Las Quemas KM 5. Cuéntanos el problema de tu vehículo y te enviamos cotización por WhatsApp.
               </p>
               <p className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4 text-primary" /> Las Quemas KM 5, Frente a pasarela, Osorno
@@ -165,6 +169,39 @@ function Index() {
           <a href={WSP_URL} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm text-primary font-semibold">
             Abrir WhatsApp <ExternalLink className="h-4 w-4" />
           </a>
+        </div>
+      </section>
+
+      {/* CÓMO LLEGAR */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-20">
+        <div className="flex items-end justify-between mb-8 flex-wrap gap-4">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Ubicación</span>
+            <h2 className="text-display text-4xl md:text-5xl font-black mt-2">Cómo llegar</h2>
+          </div>
+          <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="text-sm font-bold uppercase tracking-wider text-primary hover:underline inline-flex items-center gap-1">
+            Abrir en Google Maps <ExternalLink className="h-4 w-4" />
+          </a>
+        </div>
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-6">
+          <div className="border border-border bg-card/60 p-7">
+            <p className="text-display text-2xl">Las Quemas KM 5</p>
+            <p className="text-muted-foreground mt-1">Frente a pasarela, Osorno</p>
+            <p className="mt-4 text-sm text-foreground/80">
+              Si prefieres, también podemos atenderte a domicilio. Tú eliges si vas a nuestra casa/taller o si vamos a tu ubicación.
+            </p>
+          </div>
+          <div className="relative border border-border overflow-hidden min-h-[360px]">
+            <iframe
+              title="Cómo llegar a ECKORED en Osorno"
+              src={MAPS_EMBED_FALLBACK}
+              className="absolute inset-0 h-full w-full"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          </div>
         </div>
       </section>
 

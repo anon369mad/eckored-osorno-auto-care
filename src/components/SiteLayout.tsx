@@ -3,8 +3,8 @@ import { MessageCircle, Menu, X, MapPin, Phone } from "lucide-react";
 import { useState } from "react";
 import logo from "@/assets/eckored-logo.png";
 
-const WSP_URL = "https://wa.me/56932226821";
-const WSP_DISPLAY = "+56 9 3222 6821";
+const WSP_URL = "https://wa.me/56987517272";
+const WSP_DISPLAY = "+56 9 8751 7272";
 
 const nav = [
   { to: "/", label: "Inicio" },
@@ -85,7 +85,7 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
           <div>
             <img src={logo} alt="ECKORED" className="h-16 w-auto mb-3" />
             <p className="text-sm text-muted-foreground max-w-xs">
-              Mecánica a domicilio en Osorno. Servicios preventivos y correctivos con experiencia y compromiso.
+              Mecánica en Osorno: servicio a domicilio y también atención en casa/taller en Las Quemas KM 5.
             </p>
           </div>
           <div>
