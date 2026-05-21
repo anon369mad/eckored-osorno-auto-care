@@ -18,7 +18,7 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 flex items-center justify-between h-20">
           <Link to="/" className="flex items-center gap-3 group">
-            <img src={logo} alt="ECKORED Mecánica a Domicilio" className="h-14 w-auto drop-shadow-[0_4px_12px_oklch(0.58_0.232_27/0.5)]" />
+            <img src={logo} alt="ECKORED Mecánica a Domicilio" className="h-14 w-auto object-contain" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">
@@ -83,7 +83,7 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
       <footer className="border-t border-border/60 bg-card/40 mt-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-12 grid gap-8 md:grid-cols-3">
           <div>
-            <img src={logo} alt="ECKORED" className="h-16 w-auto mb-3" />
+            <img src={logo} alt="ECKORED" className="h-16 w-auto object-contain mb-3" />
             <p className="text-sm text-muted-foreground max-w-xs">
               Mecánica en Osorno: servicio a domicilio y también atención en casa/taller en Las Quemas KM 5.
             </p>
