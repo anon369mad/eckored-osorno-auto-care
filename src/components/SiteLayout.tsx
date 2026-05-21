@@ -9,8 +9,6 @@ const WSP_DISPLAY = "+56 9 3222 6821";
 const nav = [
   { to: "/", label: "Inicio" },
   { to: "/servicios", label: "Servicios" },
-  { to: "/galeria", label: "Galería" },
-  { to: "/contacto", label: "Contacto" },
 ] as const;
 
 export function SiteLayout({ children }: { children: React.ReactNode }) {
