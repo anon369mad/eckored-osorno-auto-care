@@ -7,7 +7,7 @@ export const Route = createFileRoute("/contacto")({
   head: () => ({
     meta: [
       { title: "Contacto — ECKORED Mecánica a Domicilio en Osorno" },
-      { name: "description", content: "Contáctanos por WhatsApp al +56 9 3222 6821. Las Quemas KM 5, frente a pasarela, Osorno." },
+      { name: "description", content: "Contáctanos por WhatsApp al +56 9 8751 7272. Las Quemas KM 5, frente a pasarela, Osorno." },
       { property: "og:title", content: "Contacto — ECKORED" },
       { property: "og:description", content: "Escríbenos por WhatsApp o visítanos en Las Quemas KM 5, Osorno." },
       { property: "og:url", content: "/contacto" },
@@ -80,12 +80,12 @@ function ContactoPage() {
               <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Atención</span>
             </div>
             <p className="text-sm text-foreground/80">
-              Coordinamos por WhatsApp en horarios flexibles. Atendemos a domicilio en Osorno y alrededores.
+              Coordinamos por WhatsApp en horarios flexibles. Atendemos a domicilio en Osorno y alrededores, y también recibimos en casa/taller.
             </p>
           </div>
 
           <a
-            href={`tel:+56932226821`}
+            href={`tel:+56987517272`}
             className="block border border-border bg-card/60 p-7 hover:border-primary/60 transition-all"
           >
             <div className="flex items-center gap-3">
@@ -98,18 +98,32 @@ function ContactoPage() {
 
         {/* Map */}
         <div className="relative border border-border overflow-hidden min-h-[480px] lg:min-h-[600px]">
-          <iframe
-            title="Mapa ECKORED - Las Quemas KM 5, Osorno"
-            src={MAPS_EMBED}
-            className="absolute inset-0 h-full w-full"
-            style={{ border: 0 }}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            allowFullScreen
-          />
-          <div className="absolute top-4 left-4 bg-background/90 backdrop-blur border border-primary/40 px-4 py-2 text-xs font-bold uppercase tracking-wider pointer-events-none">
-            <span className="text-primary">●</span> Las Quemas KM 5
-          </div>
+          {MAPS_KEY ? (
+            <>
+              <iframe
+                title="Mapa ECKORED - Las Quemas KM 5, Osorno"
+                src={MAPS_EMBED}
+                className="absolute inset-0 h-full w-full"
+                style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+              <div className="absolute top-4 left-4 bg-background/90 backdrop-blur border border-primary/40 px-4 py-2 text-xs font-bold uppercase tracking-wider pointer-events-none">
+                <span className="text-primary">●</span> Las Quemas KM 5
+              </div>
+            </>
+          ) : (
+            <div className="h-full min-h-[480px] lg:min-h-[600px] grid place-items-center bg-card/50 p-6 text-center">
+              <div>
+                <p className="text-display text-2xl">Mapa no disponible en este navegador</p>
+                <p className="mt-2 text-sm text-muted-foreground">Puedes abrir la ruta directamente en Google Maps.</p>
+                <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-primary hover:underline">
+                  Ver ruta en Google Maps <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </SiteLayout>
