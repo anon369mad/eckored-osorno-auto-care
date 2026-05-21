@@ -20,9 +20,10 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "ECKORED — Mecánica a Domicilio en Osorno" },
-      { name: "description", content: "Servicios preventivos y correctivos a domicilio en Osorno: aceite, frenos, tren delantero, scanner, lavado y empaquetaduras." },
+      { name: "description", content: "Mecánica automotriz en Osorno con precios económicos. Atención a domicilio y en taller para aceite, frenos, scanner, tren delantero y más." },
+      { name: "keywords", content: "mecánica automotriz osorno, mecánico barato osorno, taller mecánico osorno, servicio mecánico a domicilio osorno, reparación de frenos osorno" },
       { property: "og:title", content: "ECKORED — Mecánica a Domicilio en Osorno" },
-      { property: "og:description", content: "Mecánica profesional donde estés. Atendemos en Osorno y alrededores." },
+      { property: "og:description", content: "Mecánica automotriz económica en Osorno, con servicio en domicilio o en taller según tu necesidad." },
       { property: "og:url", content: "/" },
       {property: "og:image", content:logo}
     ],
