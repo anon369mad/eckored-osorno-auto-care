@@ -1,8 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2, MapPin, MessageCircle, Shield, Wrench, Clock } from "lucide-react";
+import { ArrowRight, CheckCircle2, MapPin, MessageCircle, Shield, Wrench, Clock, ExternalLink } from "lucide-react";
 import { SiteLayout, WSP_URL } from "@/components/SiteLayout";
 import { services } from "@/lib/services";
 import hero from "@/assets/hero-mechanic.jpg";
+import brakes from "@/assets/gallery-brakes.jpg";
+import oil from "@/assets/gallery-oil.jpg";
+import scanner from "@/assets/gallery-scanner.jpg";
+import suspension from "@/assets/gallery-suspension.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -41,10 +45,13 @@ function Index() {
             <p className="mt-6 text-lg text-foreground/80 max-w-xl">
               Servicios mecánicos preventivos y correctivos con la calidad de un taller, pero en la puerta de tu casa. Diagnóstico, reparación y lavado de cortesía.
             </p>
+            <p className="mt-4 inline-flex items-center gap-2 border border-primary/40 bg-primary/10 px-4 py-2 text-sm font-extrabold uppercase tracking-[0.2em] text-primary">
+              COTICE CON NOSOTROS
+            </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={WSP_URL} target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-primary px-6 py-4 text-sm font-bold uppercase tracking-wider text-primary-foreground hover:bg-primary/90 shadow-[var(--shadow-red)] transition-all">
-                <MessageCircle className="h-5 w-5" /> Agendar por WhatsApp
+                <MessageCircle className="h-5 w-5" /> COTICE CON NOSOTROS
               </a>
               <Link to="/servicios"
                 className="inline-flex items-center gap-2 border border-border bg-card/40 backdrop-blur px-6 py-4 text-sm font-bold uppercase tracking-wider hover:border-primary hover:text-primary transition-all">
@@ -110,6 +117,57 @@ function Index() {
         </div>
       </section>
 
+      {/* GALERÍA */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-20">
+        <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Trabajos</span>
+            <h2 className="text-display text-4xl md:text-5xl font-black mt-2">Galería</h2>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[160px] md:auto-rows-[180px] gap-3">
+          {[
+            { src: brakes, alt: "Pastillas y frenos", label: "Frenos", span: "row-span-2" },
+            { src: oil, alt: "Cambio de aceite", label: "Aceite", span: "" },
+            { src: scanner, alt: "Scanner automotriz", label: "Scanner", span: "" },
+            { src: suspension, alt: "Tren delantero", label: "Suspensión", span: "row-span-2" },
+          ].map((p, i) => (
+            <figure key={i} className={`group relative overflow-hidden border border-border ${p.span}`}>
+              <img src={p.src} alt={p.alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent opacity-80" />
+              <figcaption className="absolute bottom-3 left-3">
+                <span className="text-display text-lg font-bold text-white drop-shadow-md">{p.label}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      {/* CONTACTO */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-20">
+        <div className="relative overflow-hidden border border-border bg-card/50 p-8 md:p-12">
+          <div className="grid md:grid-cols-[1.2fr_1fr] gap-8 items-center">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Contacto</span>
+              <h2 className="text-display text-4xl md:text-5xl font-black mt-2">Cotiza tu servicio hoy</h2>
+              <p className="mt-4 text-foreground/80">
+                Atención a domicilio en Osorno y alrededores. Cuéntanos el problema de tu vehículo y te enviamos cotización por WhatsApp.
+              </p>
+              <p className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
+                <MapPin className="h-4 w-4 text-primary" /> Las Quemas KM 5, Frente a pasarela, Osorno
+              </p>
+            </div>
+            <a href={WSP_URL} target="_blank" rel="noopener noreferrer"
+              className="inline-flex justify-center items-center gap-2 bg-primary px-7 py-5 text-base font-bold uppercase tracking-wider text-primary-foreground shadow-[var(--shadow-red)] hover:scale-[1.02] transition-transform">
+              <MessageCircle className="h-5 w-5" /> COTICE CON NOSOTROS
+            </a>
+          </div>
+          <a href={WSP_URL} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm text-primary font-semibold">
+            Abrir WhatsApp <ExternalLink className="h-4 w-4" />
+          </a>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 py-20">
         <div className="relative overflow-hidden border border-primary/40 bg-gradient-to-br from-card to-background p-10 md:p-16">
@@ -126,7 +184,7 @@ function Index() {
             </div>
             <a href={WSP_URL} target="_blank" rel="noopener noreferrer"
               className="inline-flex justify-center items-center gap-2 bg-primary px-7 py-5 text-base font-bold uppercase tracking-wider text-primary-foreground shadow-[var(--shadow-red)] hover:scale-[1.02] transition-transform">
-              <MessageCircle className="h-5 w-5" /> +56 9 3222 6821
+              <MessageCircle className="h-5 w-5" /> COTICE CON NOSOTROS
             </a>
           </div>
         </div>
