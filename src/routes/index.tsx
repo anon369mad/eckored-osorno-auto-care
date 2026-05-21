@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, MapPin, MessageCircle, Shield, Wrench, Clock, ExternalLink } from "lucide-react";
 import { SiteLayout, WSP_URL } from "@/components/SiteLayout";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { services } from "@/lib/services";
 import hero from "@/assets/hero-mechanic.jpg";
 import brakes from "@/assets/gallery-brakes.jpg";
@@ -129,22 +130,28 @@ function Index() {
             <h2 className="text-display text-4xl md:text-5xl font-black mt-2">Galería</h2>
           </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[160px] md:auto-rows-[180px] gap-3">
-          {[
-            { src: brakes, alt: "Pastillas y frenos", label: "Frenos", span: "row-span-2" },
-            { src: oil, alt: "Cambio de aceite", label: "Aceite", span: "" },
-            { src: scanner, alt: "Scanner automotriz", label: "Scanner", span: "" },
-            { src: suspension, alt: "Tren delantero", label: "Suspensión", span: "row-span-2" },
-          ].map((p, i) => (
-            <figure key={i} className={`group relative overflow-hidden border border-border ${p.span}`}>
-              <img src={p.src} alt={p.alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent opacity-80" />
-              <figcaption className="absolute bottom-3 left-3">
-                <span className="text-display text-lg font-bold text-white drop-shadow-md">{p.label}</span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+        <Carousel opts={{ loop: true }} className="w-full px-10 sm:px-14">
+          <CarouselContent>
+            {[
+              { src: brakes, alt: "Pastillas y frenos", label: "Frenos" },
+              { src: oil, alt: "Cambio de aceite", label: "Aceite" },
+              { src: scanner, alt: "Scanner automotriz", label: "Scanner" },
+              { src: suspension, alt: "Tren delantero", label: "Suspensión" },
+            ].map((p, i) => (
+              <CarouselItem key={i}>
+                <figure className="group relative overflow-hidden border border-border">
+                  <img src={p.src} alt={p.alt} loading="lazy" className="h-[260px] w-full object-cover transition-transform duration-700 group-hover:scale-105 sm:h-[360px] md:h-[420px]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent opacity-80" />
+                  <figcaption className="absolute bottom-3 left-3">
+                    <span className="text-display text-lg font-bold text-white drop-shadow-md">{p.label}</span>
+                  </figcaption>
+                </figure>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-2 top-1/2 -translate-y-1/2" />
+          <CarouselNext className="right-2 top-1/2 -translate-y-1/2" />
+        </Carousel>
       </section>
 
       {/* CONTACTO */}
