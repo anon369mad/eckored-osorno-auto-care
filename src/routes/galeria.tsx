@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import brakes from "@/assets/gallery-brakes.jpg";
 import oil from "@/assets/gallery-oil.jpg";
 import scanner from "@/assets/gallery-scanner.jpg";
@@ -23,13 +24,13 @@ export const Route = createFileRoute("/galeria")({
 });
 
 const photos = [
-  { src: brakes, alt: "Pastillas y frenos", label: "Frenos", span: "row-span-2" },
-  { src: oil, alt: "Cambio de aceite", label: "Aceite", span: "" },
-  { src: scanner, alt: "Scanner automotriz", label: "Scanner", span: "" },
-  { src: suspension, alt: "Tren delantero", label: "Suspensión", span: "row-span-2" },
-  { src: wash, alt: "Lavado de cortesía", label: "Lavado", span: "" },
-  { src: gasket, alt: "Empaquetaduras", label: "Empaquetaduras", span: "" },
-  { src: tools, alt: "Herramientas profesionales", label: "Herramientas", span: "col-span-2" },
+  { src: brakes, alt: "Pastillas y frenos" },
+  { src: oil, alt: "Cambio de aceite" },
+  { src: scanner, alt: "Scanner automotriz" },
+  { src: suspension, alt: "Tren delantero" },
+  { src: wash, alt: "Lavado de cortesía" },
+  { src: gasket, alt: "Empaquetaduras" },
+  { src: tools, alt: "Herramientas profesionales" },
 ];
 
 function GaleriaPage() {
@@ -47,24 +48,23 @@ function GaleriaPage() {
         <div className="absolute bottom-0 inset-x-0 h-1 racing-stripe opacity-60" />
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] md:auto-rows-[220px] gap-3">
-          {photos.map((p, i) => (
-            <figure key={i} className={`group relative overflow-hidden border border-border ${p.span}`}>
-              <img
-                src={p.src}
-                alt={p.alt}
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-              <figcaption className="absolute bottom-3 left-3 right-3">
-                <span className="text-display text-lg font-bold text-white drop-shadow-md">{p.label}</span>
-              </figcaption>
-              <div className="absolute top-3 right-3 h-2 w-2 bg-primary shadow-[0_0_12px_var(--primary)]" />
-            </figure>
-          ))}
-        </div>
+      <section className="mx-auto max-w-5xl px-10 sm:px-14 py-16">
+        <Carousel opts={{ loop: true }} className="w-full">
+          <CarouselContent>
+            {photos.map((p, i) => (
+              <CarouselItem key={i}>
+                <img
+                  src={p.src}
+                  alt={p.alt}
+                  loading="lazy"
+                  className="h-[260px] w-full rounded-md border border-border object-cover sm:h-[360px] md:h-[460px]"
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-2 top-1/2 -translate-y-1/2" />
+          <CarouselNext className="right-2 top-1/2 -translate-y-1/2" />
+        </Carousel>
       </section>
     </SiteLayout>
   );
