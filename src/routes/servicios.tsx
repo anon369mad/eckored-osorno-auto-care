@@ -8,9 +8,9 @@ export const Route = createFileRoute("/servicios")({
   head: () => ({
     meta: [
       { title: "Servicios — ECKORED Mecánica a Domicilio" },
-      { name: "description", content: "Aceite, frenos, tren delantero, scanner, lavado de cortesía y empaquetaduras. Servicios preventivos y correctivos en Osorno." },
+      { name: "description", content: "Servicios de mecánica automotriz en Osorno a precio conveniente: aceite, frenos, tren delantero, scanner, lavado de cortesía y empaquetaduras." },
       { property: "og:title", content: "Servicios — ECKORED" },
-      { property: "og:description", content: "Servicios mecánicos preventivos y correctivos a domicilio en Osorno." },
+      { property: "og:description", content: "Mecánica automotriz en Osorno con servicios preventivos y correctivos a domicilio y en taller." },
       { property: "og:url", content: "/servicios" },
     ],
     links: [{ rel: "canonical", href: "/servicios" }],
@@ -27,6 +27,9 @@ function ServiciosPage() {
           <h1 className="text-display text-5xl md:text-7xl font-black mt-2">Servicios</h1>
           <p className="mt-4 max-w-2xl text-foreground/80">
             Trabajos preventivos y correctivos para mantener tu auto al 100%. Todos incluyen lavado de cortesía.
+          </p>
+          <p className="mt-3 max-w-2xl text-sm text-foreground/70">
+            Si buscas un servicio de mecánica en Osorno que sea bueno y barato, cotiza con nosotros por WhatsApp.
           </p>
         </div>
         <div className="absolute bottom-0 inset-x-0 h-1 racing-stripe opacity-60" />
