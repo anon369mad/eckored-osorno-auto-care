@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import brakes from "@/assets/gallery-brakes.jpg";
 import oil from "@/assets/gallery-oil.jpg";
 import scanner from "@/assets/gallery-scanner.jpg";
@@ -34,6 +35,15 @@ const photos = [
 ];
 
 function GaleriaPage() {
+  const [galleryApi, setGalleryApi] = useState<CarouselApi>();
+
+  useEffect(() => {
+    if (!galleryApi) return;
+
+    const id = window.setInterval(() => galleryApi.scrollNext(), 3500);
+    return () => window.clearInterval(id);
+  }, [galleryApi]);
+
   return (
     <SiteLayout>
       <section className="relative border-b border-border bg-card/30">
@@ -41,15 +51,12 @@ function GaleriaPage() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 py-20">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Trabajos</span>
           <h1 className="text-display text-5xl md:text-7xl font-black mt-2">Galería</h1>
-          <p className="mt-4 max-w-2xl text-foreground/80">
-            Una muestra del trabajo que entregamos día a día.
-          </p>
-        </div>
+                  </div>
         <div className="absolute bottom-0 inset-x-0 h-1 racing-stripe opacity-60" />
       </section>
 
       <section className="mx-auto max-w-5xl px-10 sm:px-14 py-16">
-        <Carousel opts={{ loop: true }} className="w-full">
+        <Carousel opts={{ loop: true }} setApi={setGalleryApi} className="w-full">
           <CarouselContent>
             {photos.map((p, i) => (
               <CarouselItem key={i}>
