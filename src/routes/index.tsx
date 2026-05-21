@@ -8,9 +8,9 @@ import oil from "@/assets/gallery-oil.jpg";
 import scanner from "@/assets/gallery-scanner.jpg";
 import suspension from "@/assets/gallery-suspension.jpg";
 
-const ADDRESS = "Las Quemas KM 5, Frente a pasarela, Osorno, Chile";
-const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
-const MAPS_EMBED_FALLBACK = `https://maps.google.com/maps?q=${encodeURIComponent(ADDRESS)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+const MAP_COORDS = "-40.63026,-73.11047";
+const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAP_COORDS)}`;
+const MAPS_EMBED_FALLBACK = `https://maps.google.com/maps?q=${encodeURIComponent(MAP_COORDS)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
 export const Route = createFileRoute("/")({
   component: Index,
