@@ -9,6 +9,7 @@ import brakes from "@/assets/gallery-brakes.jpg";
 import oil from "@/assets/gallery-oil.jpg";
 import scanner from "@/assets/gallery-scanner.jpg";
 import suspension from "@/assets/gallery-suspension.jpg";
+import logo from "@/assets/eckored-logo-without_desc.png";
 
 const MAP_COORDS = "-40.63026,-73.11047";
 const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAP_COORDS)}`;
@@ -23,8 +24,9 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "ECKORED — Mecánica a Domicilio en Osorno" },
       { property: "og:description", content: "Mecánica profesional donde estés. Atendemos en Osorno y alrededores." },
       { property: "og:url", content: "/" },
+      {property: "og:image", content:logo}
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "/" },{rel: "icon", type: "image/png", href: logo},],
   }),
 });
 
@@ -32,7 +34,7 @@ function Index() {
   const [galleryApi, setGalleryApi] = useState<CarouselApi>();
 
   useEffect(() => {
-    if (!galleryApi) return;
+    if (!galleryApi) return; 
 
     const id = window.setInterval(() => galleryApi.scrollNext(), 3500);
     return () => window.clearInterval(id);
@@ -51,7 +53,7 @@ function Index() {
           <div className="max-w-2xl">
             <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.3em] text-primary mb-6 border border-primary/30 px-3 py-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-              Mecánica a Domicilio · Osorno
+              Mecánica En Taller y a Domicilio · Osorno
             </span>
             <h1 className="text-display text-5xl sm:text-7xl md:text-8xl font-black leading-[0.9]">
               Tu auto.<br />
@@ -59,9 +61,6 @@ function Index() {
             </h1>
             <p className="mt-6 text-lg text-foreground/80 max-w-xl">
               Servicios mecánicos preventivos y correctivos con la calidad de un taller, pero en la puerta de tu casa. Diagnóstico, reparación y lavado de cortesía.
-            </p>
-            <p className="mt-4 inline-flex items-center gap-2 border border-primary/40 bg-primary/10 px-4 py-2 text-sm font-extrabold uppercase tracking-[0.2em] text-primary">
-              COTICE CON NOSOTROS
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={WSP_URL} target="_blank" rel="noopener noreferrer"

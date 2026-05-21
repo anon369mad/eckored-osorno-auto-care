@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
-import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 export const Route = createFileRoute("/galeria")({
   component: GaleriaPage,
@@ -17,7 +15,7 @@ export const Route = createFileRoute("/galeria")({
   }),
 });
 
-const galleryFiles = import.meta.glob("@/assets/gallery-*", {
+const galleryFiles = import.meta.glob("@/assets/gallery-*.*", {
   eager: true,
   import: "default",
 }) as Record<string, string>;
@@ -36,15 +34,6 @@ const photos = Object.entries(galleryFiles)
   }));
 
 function GaleriaPage() {
-  const [galleryApi, setGalleryApi] = useState<CarouselApi>();
-
-  useEffect(() => {
-    if (!galleryApi) return;
-
-    const id = window.setInterval(() => galleryApi.scrollNext(), 3500);
-    return () => window.clearInterval(id);
-  }, [galleryApi]);
-
   return (
     <SiteLayout>
       <section className="relative border-b border-border bg-card/30">
@@ -56,20 +45,17 @@ function GaleriaPage() {
         <div className="absolute bottom-0 inset-x-0 h-1 racing-stripe opacity-60" />
       </section>
 
-      <section className="mx-auto max-w-5xl px-10 sm:px-14 py-16">
-        <Carousel opts={{ loop: true }} setApi={setGalleryApi} className="w-full">
-          <CarouselContent>
-            {photos.map((p, i) => (
-              <CarouselItem key={i}>
-                <div className="flex h-[260px] w-full items-center justify-center rounded-md border border-border bg-card/40 sm:h-[360px] md:h-[460px]">
-                  <img src={p.src} alt={p.alt} loading="lazy" className="max-h-full w-full rounded-md object-contain" />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="left-2 top-1/2 -translate-y-1/2" />
-          <CarouselNext className="right-2 top-1/2 -translate-y-1/2" />
-        </Carousel>
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-16">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {photos.map((p) => (
+            <article key={p.src} className="overflow-hidden rounded-3xl border border-border bg-card/50 shadow-sm">
+              <div className="aspect-[4/3] bg-card/20 flex items-center justify-center p-4">
+                <img src={p.src} alt={p.alt} loading="lazy" className="h-full w-full object-contain" />
+              </div>
+              <div className="px-4 py-3 text-sm font-semibold text-foreground/90">{p.alt}</div>
+            </article>
+          ))}
+        </div>
       </section>
     </SiteLayout>
   );
