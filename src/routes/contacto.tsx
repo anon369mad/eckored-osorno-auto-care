@@ -16,10 +16,10 @@ export const Route = createFileRoute("/contacto")({
   }),
 });
 
-const ADDRESS = "Las Quemas KM 5, Frente a pasarela, Osorno, Chile";
-const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
+const MAP_COORDS = "-40.63026,-73.11047";
+const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAP_COORDS)}`;
 const MAPS_KEY = import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_BROWSER_KEY;
-const MAPS_EMBED = `https://www.google.com/maps/embed/v1/place?key=${MAPS_KEY}&q=${encodeURIComponent(ADDRESS)}&zoom=15`;
+const MAPS_EMBED = `https://www.google.com/maps/embed/v1/place?key=${MAPS_KEY}&q=${encodeURIComponent(MAP_COORDS)}&zoom=15`;
 
 function ContactoPage() {
   return (
