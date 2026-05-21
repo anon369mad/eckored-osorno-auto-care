@@ -2,13 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import brakes from "@/assets/gallery-brakes.jpg";
-import oil from "@/assets/gallery-oil.jpg";
-import scanner from "@/assets/gallery-scanner.jpg";
-import suspension from "@/assets/gallery-suspension.jpg";
-import wash from "@/assets/gallery-wash.jpg";
-import gasket from "@/assets/gallery-gasket.jpg";
-import tools from "@/assets/gallery-tools.jpg";
 
 export const Route = createFileRoute("/galeria")({
   component: GaleriaPage,
@@ -24,15 +17,23 @@ export const Route = createFileRoute("/galeria")({
   }),
 });
 
-const photos = [
-  { src: brakes, alt: "Pastillas y frenos" },
-  { src: oil, alt: "Cambio de aceite" },
-  { src: scanner, alt: "Scanner automotriz" },
-  { src: suspension, alt: "Tren delantero" },
-  { src: wash, alt: "Lavado de cortesía" },
-  { src: gasket, alt: "Empaquetaduras" },
-  { src: tools, alt: "Herramientas profesionales" },
-];
+const galleryFiles = import.meta.glob("@/assets/gallery-*", {
+  eager: true,
+  import: "default",
+}) as Record<string, string>;
+
+const photos = Object.entries(galleryFiles)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, src]) => ({
+    src,
+    alt: path
+      .split("/")
+      .pop()
+      ?.replace(/^gallery-/, "")
+      .replace(/\.[^.]+$/, "")
+      .replace(/[-_]/g, " ")
+      .replace(/\b\w/g, (c) => c.toUpperCase()) ?? "Imagen de galería",
+  }));
 
 function GaleriaPage() {
   const [galleryApi, setGalleryApi] = useState<CarouselApi>();
@@ -51,7 +52,7 @@ function GaleriaPage() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 py-20">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Trabajos</span>
           <h1 className="text-display text-5xl md:text-7xl font-black mt-2">Galería</h1>
-                  </div>
+        </div>
         <div className="absolute bottom-0 inset-x-0 h-1 racing-stripe opacity-60" />
       </section>
 
@@ -60,12 +61,9 @@ function GaleriaPage() {
           <CarouselContent>
             {photos.map((p, i) => (
               <CarouselItem key={i}>
-                <img
-                  src={p.src}
-                  alt={p.alt}
-                  loading="lazy"
-                  className="h-[260px] w-full rounded-md border border-border object-cover sm:h-[360px] md:h-[460px]"
-                />
+                <div className="flex h-[260px] w-full items-center justify-center rounded-md border border-border bg-card/40 sm:h-[360px] md:h-[460px]">
+                  <img src={p.src} alt={p.alt} loading="lazy" className="max-h-full w-full rounded-md object-contain" />
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>
